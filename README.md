@@ -1,20 +1,16 @@
 # Entorno `conda` para la asignatura de Modelos avanzados de minería de datos de la UOC
 
-Las siguientes instrucciones sirven tanto para Anaconda como para Miniconda, en ambos casos en su versión 3. Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles, tensorflow no lo es, por lo que vamos a realizar toda la instalación sobre Python 3.6.
+Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3. Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles, tensorflow no lo es, por lo que vamos a realizar toda la instalación sobre **Python 3.6**.
 
 ## Opción 1: Crear el entorno desde cero
 
-Creamos un nuevo entorno sobre Python 3.6 (última versión 3.7.2) y lo activamos
+Creamos un nuevo entorno sobre Python 3.6 y lo activamos
 
     conda create -n uoc_modelos_avanzados python=3.7 && conda activate scipy
 
-Añadimos el kernel para **Jupyter notebook**
-
-    conda install ipykernel
-
 Y añadimos los paquetes necesarios para la mayoría de tareas de minería de datos y visualización
 
-    conda install numpy matplotlib pandas seaborn scikit-learn
+    conda install numpy pandas scikit-learn matplotlib seaborn
 
 Ese comando resultará en la instalación de los siguientes paquetes
 
@@ -81,7 +77,12 @@ Copmo resultado se instalarán los siguientes paquetes:
 
 ```
 
+Finalmente, si queremos utilizar nuestro entorno con **Jupyter notebook** deberemos de instalar el kernel de Python, `ipykernel`.
+
+    conda install ipykernel
+
 Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de Modelos Avanzados de Minería de Datos con Python y Jupyter Notebook.
+
 
 ## Opción 2: Crear el entorno a partir de un archivo con la especificación de las dependencias
 
@@ -90,3 +91,14 @@ Además de crear un entorno de forma manual, instalando los paquetes necesarios,
 Si nuestra especificación se encuentra en el archivo `uoc_modelos_avanzados.yml`, entonces para crear el entorno debemos hacer lo siguiente
 
     conda env create -f uoc_modelos_avanzados.yml
+
+## Referencias
+
+- Guía oficial sobre gestión de entornos con `conda`: [User guide > Manage environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+- Portal [Scipy.org](https://www.scipy.org/), dedicado al ecosistema de librerías Python para matemáticas, ciencia e ingeniería. Desde este portal podremos así mismo acceder a la información específica de la mayoría de las librerías que componen este ecosistema:
+  - [numpy](http://docs.scipy.org/doc/numpy/)
+  - [pandas](http://pandas.pydata.org/pandas-docs/stable/)
+  - [scipy](http://docs.scipy.org/doc/scipy/reference/)
+  - [simpy](http://docs.sympy.org/)
+  - [matplotlib](http://matplotlib.org/contents.html)
+  - [ipython](http://ipython.org/ipython-doc/stable/index.html)
