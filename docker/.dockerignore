@@ -1,0 +1,4 @@
+# Documentation
+.git
+*.md
+!README.md

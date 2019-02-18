@@ -83,7 +83,6 @@ Finalmente, si queremos utilizar nuestro entorno con **Jupyter notebook** debere
 
 Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de Modelos Avanzados de Minería de Datos con Python y Jupyter Notebook.
 
-
 ## Opción 2: Crear el entorno a partir de un archivo con la especificación de las dependencias
 
 Además de crear un entorno de forma manual, instalando los paquetes necesarios, conda nos ofrece la posibilidad de definir los paquetes que queremos instalar en un archivo de texto. Hay varias formas de generar y obtener dichos archivos, pero la más fácil es mediante el lenguaje YAML.
@@ -91,6 +90,10 @@ Además de crear un entorno de forma manual, instalando los paquetes necesarios,
 Si nuestra especificación se encuentra en el archivo `uoc_modelos_avanzados.yml`, entonces para crear el entorno debemos hacer lo siguiente
 
     conda env create -f uoc_modelos_avanzados.yml
+
+## Opción 3: Imagen para contenedor Docker
+
+Finalmente, se ha creado una imagen para Docker con todo lo necesario ya preinstalado, la cual se puede obtener desde 
 
 ## Referencias
 
