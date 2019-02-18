@@ -1,6 +1,6 @@
 # Entorno `conda` para la asignatura de Modelos avanzados de minería de datos de la UOC
 
-Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3. Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles, tensorflow no lo es, por lo que vamos a realizar toda la instalación sobre **Python 3.6**.
+Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3. Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles, **TensorFlow** no lo es, por lo que vamos a realizar toda la instalación sobre **Python 3.6**.
 
 ## Opción 1: Crear el entorno desde cero
 
@@ -85,11 +85,13 @@ Con esto habremos terminado de configurar nuestro entorno de desarrollo para la 
 
 ## Opción 2: Crear el entorno a partir de un archivo con la especificación de las dependencias
 
-Además de crear un entorno de forma manual, instalando los paquetes necesarios, conda nos ofrece la posibilidad de definir los paquetes que queremos instalar en un archivo de texto. Hay varias formas de generar y obtener dichos archivos, pero la más fácil es mediante el lenguaje YAML.
+Además de crear un entorno de forma manual, instalando los paquetes necesarios, `conda` nos ofrece la posibilidad de definir los paquetes que queremos instalar en un archivo de texto. Hay varias formas de generar y obtener dichos archivos, pero la más fácil es mediante el lenguaje YAML.
 
-Si nuestra especificación se encuentra en el archivo `uoc_modelos_avanzados.yml`, entonces para crear el entorno debemos hacer lo siguiente
+En este repositorio se proporciona un archivo YAML con la especificación básica del entorno: `uoc_modelos_avanzados.yml`, entonces para crear el entorno debemos hacer lo siguiente.
 
     conda env create -f uoc_modelos_avanzados.yml
+
+Con fines informativos, se ha incluido también la especificación completa en el archivo `uoc_modelos_avanzados-full.yml`, pero el resultado final sería el mismo, ya que los paquetes no incluidos en la especificación básica son archivos básicos preinstalados en cualquier entorno conda, o son dependencias de las librerías instaladas.
 
 ## Opción 3: Imagen para contenedor Docker
 
