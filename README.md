@@ -6,7 +6,7 @@ Las siguientes instrucciones sirven tanto para **Anaconda** como para **Minicond
 
 Creamos un nuevo entorno sobre Python 3.6 y lo activamos
 
-    conda create -n uoc_modelos_avanzados python=3.7 && conda activate scipy
+    conda create -n uoc_modelos_avanzados python=3.6 && conda activate scipy
 
 Y añadimos los paquetes necesarios para la mayoría de tareas de minería de datos y visualización
 
@@ -81,7 +81,7 @@ Finalmente, si queremos utilizar nuestro entorno con **Jupyter notebook** debere
 
     conda install ipykernel
 
-Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de Modelos Avanzados de Minería de Datos con Python y Jupyter Notebook.
+Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de **Modelos Avanzados de Minería de Datos**.
 
 ## Opción 2: Crear el entorno a partir de un archivo con la especificación de las dependencias
 
@@ -93,7 +93,9 @@ Si nuestra especificación se encuentra en el archivo `uoc_modelos_avanzados.yml
 
 ## Opción 3: Imagen para contenedor Docker
 
-Finalmente, se ha creado una imagen para Docker con todo lo necesario ya preinstalado, la cual se puede obtener desde 
+Finalmente, se ha creado una imagen Docker con el entorno de desarrollo preinstalado. Dicha imagen se puede generar a partir del Dockerfile incluido en el directorio `docker` de este repositorio, o se puede descargar directamente desde [Docker Hub](https://cloud.docker.com/repository/docker/magomar/uoc-modelos-avanzados).
+
+Las instrucciones se pueden consultar en el [README](https://github.com/magomar/uoc_modelos_avanzados/blob/master/docker/README.md) del directorio `docker`.
 
 ## Referencias
 

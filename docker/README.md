@@ -1,4 +1,4 @@
-# Imagen **docker** con para la asignatura de Modelos Avanzados de Minería de Datos, del Máster de Ciencia de Datos de la UOC
+# Imagen *docker* para la asignatura de Modelos Avanzados de Minería de Datos, del Máster de Ciencia de Datos de la UOC
 
 Esta imagen ofrece un entorno Python con todo lo necesaria para completar con éxito la asignatura de **Modelos Avanzados de Minería de Datos** (código M2.855), incluida en el [**Máster de Ciencia de Datos**](https://estudios.uoc.edu/es/masters-universitarios/data-science/presentacion) de la **UOC**.
 
