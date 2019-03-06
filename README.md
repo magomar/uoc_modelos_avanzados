@@ -1,85 +1,130 @@
 # Entorno `conda` para la asignatura de Modelos avanzados de minería de datos de la UOC
 
-Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3. Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles, **TensorFlow** no lo es, por lo que vamos a realizar toda la instalación sobre **Python 3.6**.
+Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3 (para Python 3.x). 
+
+Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles con dicha versión, **TensorFlow** no lo es, y como es necesario (o muy conveniente al menos) para la asignatura, vamos a crear un entorno basado en **Python 3.6**.
+
+## Requisitos y enfoque
+
+Vamos a preparar un entorno de trabajo para la asignatura utilizando el gestor de paquetes y entornos virtuales `conda`, el cual podemos encontrar tanto en Anaconda como en Miniconda.
+
+Las instrucciones para su instalación pueden variar dependiendo del sistema operativo utilizado y de la distribución concreta. A modo de ejemplo, para realizar la instalación de Miniconda en Linux, es suficiente con ejecutar el siguiente script en un terminal de Linux.
+
+```sh
+cd ~/Downloads && \
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+bash Miniconda3-latest-Linux-x86_64.sh -b
+```
+
+Y responder que sí cuando nos pregunté si queremos modificar `.bashrc` para añadir conda al `PATH`.
+
+Para trabajar con Jupyter Notebook con un kernel determinado (el kernel lo que permite ejecutar un lenguaje de programación en particular, en nuestro caso Python 3.6, pero también podría ser R, Julia, etc.) necesitamos, por un lado, el propio Juptyer Notebook, y por otro lado, un entorno con el kernel y las librerías que queramos utilizar compatibles con ese kernel. Una opción sería instalar todo en un único entorno virtual. Sin embargo, esto tiene el inconveniente de que para cada entorno de ejecución tendremos que instalar Jupyter Notebook, que es bastante pesado. Otro enfoque más apropiado es tener un entorno virtual específico para ejecutar Jupyter Notebook, y un entorno virtual específico por cada kernel y conjunto de librerías que queramos utilizar. Este último es el enfoque que prefiero y recomiendo. 
+
+## Entorno virtual para Juptyer Notebook
+
+Este entorno lo uso únicamente para ejecutar Jupyter Notebook. Para ello necesitamos un entorno basado en Python. Hay que instalar el propio Jupyter Notebook (el paquete `jupyter`), y resulta muy práctica instalar un paquete adicional que permite detectar automáticamente los kernels disponibles en otros entornos de ejecución (`nb_conda_kernels`).    
+
+Podemos crear el entorno con ambos paquetes en un único paso con el siguiente script (notebook es el nombre que le doy al entorno):
+
+```sh
+conda create -n notebook python=3.7 nb_conda_kernels
+```
+
+Podemos comprobar que el entorno se ha creado correctamente activándolo y ejecutando Jupyter. Pero antes recomiendo situarse en el directorio de trabajo donde tengamos o queramos guardar los *notebooks*.
+
+```sh
+conda activate notebook && jupyter notebook
+```
+
+Tras ejecutar dicho comando veremos unas instrucciones, incluyendo una url que nos permitirá acceder a nuestro entorno Jupyter Notebook, y tendrá una forma similar a esta: <http://localhost:8888/?token=d0bf1cb7467893152151c5c7e3952236384f231ac567cb59>. Para copiar dicha url desde un terminal puedes usar la combinación de teclas <Ctrl +C>
+
+Ya tenemos list el entorno para ejecutar Juptyer Notebook. A continuación vamos a crear un entorno específico para el kernel de Python 3.6 con las librerías necesarias para la asignatura. Voy a mostrar dos opciones, en la primera crearemos el entorno desde cero, y en la segunda usaremos un archivo con la descripción del entorno en YAML
 
 ## Opción 1: Crear el entorno desde cero
 
 Creamos un nuevo entorno sobre Python 3.6 y lo activamos
 
-    conda create -n uoc_modelos_avanzados python=3.6 && conda activate scipy
+```sh
+conda create -n uoc_modelos_avanzados python=3.6 && conda activate uoc_modelos_avanzados
+```
 
-Y añadimos los paquetes necesarios para la mayoría de tareas de minería de datos y visualización
+Instalamos los paquetes necesarios para las tareas más comunes en minería de datos, lo que se conoce como el ecosistema **SciPy** (Scientific Python)
 
-    conda install numpy pandas scikit-learn matplotlib seaborn
+```sh
+conda install numpy pandas scikit-learn matplotlib seaborn
+```
 
 Ese comando resultará en la instalación de los siguientes paquetes
 
 ```sh
-    package                    |            build
-    ---------------------------|-----------------
-    cycler-0.10.0              |           py36_0          13 KB
-    kiwisolver-1.0.1           |   py36hf484d3e_0          83 KB
-    matplotlib-3.0.2           |   py36h5429711_0         6.5 MB
-    mkl_fft-1.0.10             |   py36ha843d7b_0         170 KB
-    mkl_random-1.0.2           |   py36hd81dba3_0         407 KB
-    numpy-1.15.4               |   py36h7e9f1db_0          47 KB
-    numpy-base-1.15.4          |   py36hde5b4d6_0         4.3 MB
-    pandas-0.24.0              |   py36he6710b0_0        11.1 MB
-    patsy-0.5.1                |           py36_0         380 KB
-    pyparsing-2.3.1            |           py36_0         105 KB
-    pyqt-5.9.2                 |   py36h05f1152_2         5.6 MB
-    python-dateutil-2.7.5      |           py36_0         275 KB
-    pytz-2018.9                |           py36_0         260 KB
-    scikit-learn-0.20.2        |   py36hd81dba3_0         5.7 MB
-    scipy-1.2.0                |   py36h7c811a0_0        17.8 MB
-    seaborn-0.9.0              |           py36_0         379 KB
-    sip-4.19.8                 |   py36hf484d3e_0         290 KB
-    statsmodels-0.9.0          |   py36h035aef0_0         9.0 MB
-    tornado-5.1.1              |   py36h7b6447c_0         663 KB
-    ------------------------------------------------------------
-                                           Total:        63.0 MB
-
+package                    |            build
+---------------------------|-----------------
+cycler-0.10.0              |           py36_0          13 KB
+kiwisolver-1.0.1           |   py36hf484d3e_0          83 KB
+matplotlib-3.0.2           |   py36h5429711_0         6.5 MB
+mkl_fft-1.0.10             |   py36ha843d7b_0         170 KB
+mkl_random-1.0.2           |   py36hd81dba3_0         407 KB
+numpy-1.15.4               |   py36h7e9f1db_0          47 KB
+numpy-base-1.15.4          |   py36hde5b4d6_0         4.3 MB
+pandas-0.24.0              |   py36he6710b0_0        11.1 MB
+patsy-0.5.1                |           py36_0         380 KB
+pyparsing-2.3.1            |           py36_0         105 KB
+pyqt-5.9.2                 |   py36h05f1152_2         5.6 MB
+python-dateutil-2.7.5      |           py36_0         275 KB
+pytz-2018.9                |           py36_0         260 KB
+scikit-learn-0.20.2        |   py36hd81dba3_0         5.7 MB
+scipy-1.2.0                |   py36h7c811a0_0        17.8 MB
+seaborn-0.9.0              |           py36_0         379 KB
+sip-4.19.8                 |   py36hf484d3e_0         290 KB
+statsmodels-0.9.0          |   py36h035aef0_0         9.0 MB
+tornado-5.1.1              |   py36h7b6447c_0         663 KB
+------------------------------------------------------------
+                                        Total:        63.0 MB
 ```
 
 Para la PEC3 de la asignatura, dedicada a los *métodos supervisados*, hay que implementar algunas redes neuronales, así es que necesitamos instalar algunos paquetes adicionales. En particular, se recomienda utilizar la api de `keras`, y `tensorflow` como motor de procesamiento o *backend*, aunque existen otras alternativas, como  `theano`.
 
-    conda install keras tensorflow
-
-Copmo resultado se instalarán los siguientes paquetes:
-
 ```sh
-
-    package                    |            build
-    ---------------------------|-----------------
-    _tflow_select-2.3.0        |              mkl           2 KB
-    absl-py-0.7.0              |           py36_0         156 KB
-    astor-0.7.1                |           py36_0          43 KB
-    c-ares-1.15.0              |       h7b6447c_1          98 KB
-    gast-0.2.2                 |           py36_0         138 KB
-    grpcio-1.16.1              |   py36hf8bcb03_1         1.1 MB
-    h5py-2.9.0                 |   py36h7918eee_0         1.2 MB
-    hdf5-1.10.4                |       hb1b8bf9_0         5.3 MB
-    keras-2.2.4                |                0           5 KB
-    keras-applications-1.0.6   |           py36_0          49 KB
-    keras-base-2.2.4           |           py36_0         457 KB
-    keras-preprocessing-1.0.5  |           py36_0          52 KB
-    libprotobuf-3.6.1          |       hd408876_0         4.1 MB
-    markdown-3.0.1             |           py36_0         107 KB
-    protobuf-3.6.1             |   py36he6710b0_0         616 KB
-    pyyaml-3.13                |   py36h14c3975_0         178 KB
-    tensorboard-1.12.2         |   py36he6710b0_0         3.1 MB
-    tensorflow-1.12.0          |mkl_py36h69b6ba0_0           4 KB
-    tensorflow-base-1.12.0     |mkl_py36h3c3e929_0        98.5 MB
-    termcolor-1.1.0            |           py36_1           7 KB
-    werkzeug-0.14.1            |           py36_0         423 KB
-    ------------------------------------------------------------
-                                           Total:       115.5 MB
-
+conda install keras tensorflow
 ```
 
-Finalmente, si queremos utilizar nuestro entorno con **Jupyter notebook** deberemos de instalar el kernel de Python, `ipykernel`.
+Como resultado se instalarán los siguientes paquetes:
 
-    conda install ipykernel
+```sh
+package                    |            build
+---------------------------|-----------------
+_tflow_select-2.3.0        |              mkl           2 KB
+absl-py-0.7.0              |           py36_0         156 KB
+astor-0.7.1                |           py36_0          43 KB
+c-ares-1.15.0              |       h7b6447c_1          98 KB
+gast-0.2.2                 |           py36_0         138 KB
+grpcio-1.16.1              |   py36hf8bcb03_1         1.1 MB
+h5py-2.9.0                 |   py36h7918eee_0         1.2 MB
+hdf5-1.10.4                |       hb1b8bf9_0         5.3 MB
+keras-2.2.4                |                0           5 KB
+keras-applications-1.0.6   |           py36_0          49 KB
+keras-base-2.2.4           |           py36_0         457 KB
+keras-preprocessing-1.0.5  |           py36_0          52 KB
+libprotobuf-3.6.1          |       hd408876_0         4.1 MB
+markdown-3.0.1             |           py36_0         107 KB
+protobuf-3.6.1             |   py36he6710b0_0         616 KB
+pyyaml-3.13                |   py36h14c3975_0         178 KB
+tensorboard-1.12.2         |   py36he6710b0_0         3.1 MB
+tensorflow-1.12.0          |mkl_py36h69b6ba0_0           4 KB
+tensorflow-base-1.12.0     |mkl_py36h3c3e929_0        98.5 MB
+termcolor-1.1.0            |           py36_1           7 KB
+werkzeug-0.14.1            |           py36_0         423 KB
+------------------------------------------------------------
+                                        Total:       115.5 MB
+```
+
+Finalmente, para poder utilizar nuestro entorno con Jupyter Notebook deberemos de instalar el kernel de Python, `ipykernel`.
+
+```sh
+conda install ipykernel
+```
+
+Si hemos instalado `nb-conda-kernels` en el entorno con Jupyter Notebook, entonces no será necesario hacer nada más; sino habrá que añadir el kernel manualmente (ver [documentación](https://ipython.readthedocs.io/en/stable/install/kernel_install.html#kernels-for-different-environments)):
 
 Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de **Modelos Avanzados de Minería de Datos**.
 
