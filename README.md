@@ -1,14 +1,14 @@
-# Entorno `conda` para la asignatura de Modelos avanzados de minería de datos de la UOC
+# Entorno de ejecución para la asignatura de Modelos avanzados de minería de datos de la UOC
 
-Las siguientes instrucciones sirven tanto para **Anaconda** como para **Miniconda**, en ambos casos en su versión 3 (para Python 3.x). 
+Las siguientes instrucciones sirven crear un entorno de ejecución para la asignatura de **Modelos avanzados de minería de datos**, la cual se basa en Jupyter Notebook sobre Python. Aunque sería posible gestionar el entorno utilizando `pip` como gestor de paquetes python, prefiero utilizar el gestor de paquetes y entorno virtuales `conda`, el cual viene incluido, junto con `pip`, tanto en **Anaconda** como en **Miniconda**.
 
 Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizadas son compatibles con dicha versión, **TensorFlow** no lo es, y como es necesario (o muy conveniente al menos) para la asignatura, vamos a crear un entorno basado en **Python 3.6**.
 
 ## Requisitos y enfoque
 
-Vamos a preparar un entorno de trabajo para la asignatura utilizando el gestor de paquetes y entornos virtuales `conda`, el cual podemos encontrar tanto en Anaconda como en Miniconda.
+Como hemos comentado, el entorno de trabajo que necesitamos debe contener Vamos a preparar un entorno de trabajo para la asignatura utilizando el gestor de paquetes y entornos virtuales `conda`, el cual podemos encontrar tanto en Anaconda como en Miniconda. Como vamos a utilizar Python 3.6, debemos instalar una versión de Anaconda o Miniconda para Python 3, pues también existen versiones para Python 2.
 
-Las instrucciones para su instalación pueden variar dependiendo del sistema operativo utilizado y de la distribución concreta. A modo de ejemplo, para realizar la instalación de Miniconda en Linux, es suficiente con ejecutar el siguiente script en un terminal de Linux.
+Las instrucciones para instalar Anaconda o Miniconda pueden variar dependiendo del sistema operativo utilizado y de la distribución concreta. A modo de ejemplo, para realizar la instalación de Miniconda en Linux, es suficiente con ejecutar el siguiente script en un terminal de Linux.
 
 ```sh
 cd ~/Downloads && \
@@ -18,11 +18,15 @@ bash Miniconda3-latest-Linux-x86_64.sh -b
 
 Y responder que sí cuando nos pregunté si queremos modificar `.bashrc` para añadir conda al `PATH`.
 
-Para trabajar con Jupyter Notebook con un kernel determinado (el kernel lo que permite ejecutar un lenguaje de programación en particular, en nuestro caso Python 3.6, pero también podría ser R, Julia, etc.) necesitamos, por un lado, el propio Juptyer Notebook, y por otro lado, un entorno con el kernel y las librerías que queramos utilizar compatibles con ese kernel. Una opción sería instalar todo en un único entorno virtual. Sin embargo, esto tiene el inconveniente de que para cada entorno de ejecución tendremos que instalar Jupyter Notebook, que es bastante pesado. Otro enfoque más apropiado es tener un entorno virtual específico para ejecutar Jupyter Notebook, y un entorno virtual específico por cada kernel y conjunto de librerías que queramos utilizar. Este último es el enfoque que prefiero y recomiendo. 
+Para trabajar con Jupyter Notebook con un kernel determinado (el kernel lo que permite ejecutar un lenguaje de programación en particular, en nuestro caso Python 3.6, pero también podría ser R, Julia, etc.) necesitamos, por un lado, el propio Jupyter Notebook, y por otro lado, un entorno con el kernel y las librerías que queramos utilizar compatibles con ese kernel. Una opción sería instalar todo en un único entorno virtual. Sin embargo, esto tiene el inconveniente de que para cada entorno de ejecución tendremos que instalar Jupyter Notebook, que ocupa bastante espacio de almacenamiento.
+
+Un enfoque mucho menos redundante es tener un entorno virtual específico para ejecutar Jupyter Notebook, y un entorno virtual específico por cada kernel y conjunto de librerías que queramos utilizar. Este último es el enfoque que prefiero y recomiendo.
+
+Y por último, cabe mencionar que el entorno que presento se basa en la versión de TensorFlow para CPU, y no en la versión para GPU. En el caso de querer utilizar la GPU para la ejecución de TensorFlow será necesario instalar `tensorflow-gpu`, pero previamente habrá que asegurarse de tener una GPU compatible e instalar los drivers y librerías específicas necesarias, como CUDA para NVIDIA.
 
 ## Entorno virtual para Juptyer Notebook
 
-Este entorno lo uso únicamente para ejecutar Jupyter Notebook. Para ello necesitamos un entorno basado en Python. Hay que instalar el propio Jupyter Notebook (el paquete `jupyter`), y resulta muy práctica instalar un paquete adicional que permite detectar automáticamente los kernels disponibles en otros entornos de ejecución (`nb_conda_kernels`).    
+Este entorno lo uso únicamente para ejecutar Jupyter Notebook. Para ello necesitamos un entorno basado en Python. Hay que instalar el propio Jupyter Notebook (el paquete `jupyter`), y resulta muy práctica instalar un paquete adicional que permite detectar automáticamente los kernels disponibles en otros entornos de ejecución (`nb_conda_kernels`).
 
 Podemos crear el entorno con ambos paquetes en un único paso con el siguiente script (notebook es el nombre que le doy al entorno):
 
@@ -38,7 +42,7 @@ conda activate notebook && jupyter notebook
 
 Tras ejecutar dicho comando veremos unas instrucciones, incluyendo una url que nos permitirá acceder a nuestro entorno Jupyter Notebook, y tendrá una forma similar a esta: <http://localhost:8888/?token=d0bf1cb7467893152151c5c7e3952236384f231ac567cb59>. Para copiar dicha url desde un terminal puedes usar la combinación de teclas <Ctrl +C>
 
-Ya tenemos list el entorno para ejecutar Juptyer Notebook. A continuación vamos a crear un entorno específico para el kernel de Python 3.6 con las librerías necesarias para la asignatura. Voy a mostrar dos opciones, en la primera crearemos el entorno desde cero, y en la segunda usaremos un archivo con la descripción del entorno en YAML
+Ya tenemos list el entorno para ejecutar Juptyer Notebook. A continuación vamos a crear un entorno específico para el kernel de Python 3.6 con las librerías necesarias para la asignatura. 
 
 ## Opción 1: Crear el entorno desde cero
 
