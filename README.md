@@ -8,15 +8,24 @@ Aunque ya existe una versión 3.7 de Python y la mayoría de librerías utilizad
 
 Como hemos comentado, el entorno de trabajo que necesitamos debe contener Vamos a preparar un entorno de trabajo para la asignatura utilizando el gestor de paquetes y entornos virtuales `conda`, el cual podemos encontrar tanto en Anaconda como en Miniconda. Como vamos a utilizar Python 3.6, debemos instalar una versión de Anaconda o Miniconda para Python 3, pues también existen versiones para Python 2.
 
-Las instrucciones para instalar Anaconda o Miniconda pueden variar dependiendo del sistema operativo utilizado y de la distribución concreta. A modo de ejemplo, para realizar la instalación de Miniconda en Linux, es suficiente con ejecutar el siguiente script en un terminal de Linux.
+Las instrucciones para instalar Anaconda o Miniconda pueden variar dependiendo del sistema operativo utilizado y de la distribución concreta.
+A continuación incluyo los scripts necesarios para instalar Miniconda o Anaconda en Linux, para otros sistemas operativos remito a la página oficial.
 
 ```sh
 cd ~/Downloads && \
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-bash Miniconda3-latest-Linux-x86_64.sh -b
+bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Y responder que sí cuando nos pregunté si queremos modificar `.bashrc` para añadir conda al `PATH`.
+Sugiero responder que sí cuando nos pregunté si queremos inicializar Miniconda3 (añadirá conda al `PATH` para que podamos ejecutarlo desde cualquier terminal).
+
+La instalación de Anaconda es similar, solo cambia el archivo a descargar.
+
+```sh
+cd ~/Downloads/ && \
+wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh && \
+sh Anaconda3-2018.12-Linux-x86_64.sh
+```
 
 Para trabajar con Jupyter Notebook con un kernel determinado (el kernel lo que permite ejecutar un lenguaje de programación en particular, en nuestro caso Python 3.6, pero también podría ser R, Julia, etc.) necesitamos, por un lado, el propio Jupyter Notebook, y por otro lado, un entorno con el kernel y las librerías que queramos utilizar compatibles con ese kernel. Una opción sería instalar todo en un único entorno virtual. Sin embargo, esto tiene el inconveniente de que para cada entorno de ejecución tendremos que instalar Jupyter Notebook, que ocupa bastante espacio de almacenamiento.
 
