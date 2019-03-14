@@ -33,7 +33,7 @@ Un enfoque mucho menos redundante es tener un entorno virtual específico para e
 
 Y por último, cabe mencionar que el entorno que presento se basa en la versión de TensorFlow para CPU, y no en la versión para GPU. En el caso de querer utilizar la GPU para la ejecución de TensorFlow será necesario instalar `tensorflow-gpu`, pero previamente habrá que asegurarse de tener una GPU compatible e instalar los drivers y librerías específicas necesarias, como CUDA para NVIDIA.
 
-## Entorno virtual para Juptyer Notebook
+## Entorno virtual para Jupyter Notebook
 
 Este entorno lo uso únicamente para ejecutar Jupyter Notebook. Para ello necesitamos un entorno basado en Python. Hay que instalar el propio Jupyter Notebook (el paquete `jupyter`), y resulta muy práctica instalar un paquete adicional que permite detectar automáticamente los kernels disponibles en otros entornos de ejecución (`nb_conda_kernels`).
 
@@ -140,6 +140,12 @@ conda install ipykernel
 Si hemos instalado `nb-conda-kernels` en el entorno con Jupyter Notebook, entonces no será necesario hacer nada más; sino habrá que añadir el kernel manualmente (ver [documentación](https://ipython.readthedocs.io/en/stable/install/kernel_install.html#kernels-for-different-environments)):
 
 Con esto habremos terminado de configurar nuestro entorno de desarrollo para la asignatura de **Modelos Avanzados de Minería de Datos**.
+
+**Nota**: Si se dispone de una tarjeta gráfica compatible con *CUDA* es posible usarla con tensor flow. En primer lugar habrá que asegurarse de tener instalados los controladores adecuados, y además habrá que instalar CUDA tookkit y cuDNN SDK. Se pueden consultar los requisitos en la [documentación de TensorFlow](https://www.tensorflow.org/install/gpu). Los modelos de tarjeta gráfica compatibles se pueden consultar en [Nvidia Developer](https://developer.nvidia.com/cuda-gpus). Buscando un poco se pueden encontrar tutoriales de instalación y configuración para los principales sistemas operativos. Una vez preparado el entorno, para poder usar CUDA con tensorflow procederemos a instalar la versión específica de tensorflow:
+
+```sh
+conda install tensorflow-gpu
+```
 
 ## Opción 2: Crear el entorno a partir de un archivo con la especificación de las dependencias
 
